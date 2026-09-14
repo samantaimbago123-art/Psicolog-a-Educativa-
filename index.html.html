@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psicología Educativa - Sílabo del Curso</title>
+    <style>
+        /* Variables y Paleta Institucional */
+        :root {
+            --primary-color: #292D52;
+            --secondary-color: #EAB818;
+            --light-bg: #f8f9fa;
+            --dark-text: #2c3e50;
+            --white: #ffffff;
+            --gray-border: #e0e0e0;
+        }
+
+        /* Estilos Base */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-text);
+            background-color: var(--white);
+            padding-top: 70px; /* Offset para el menú fijo */
+        }
+
+        h1, h2, h3, h4 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            list-style: disc;
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        section {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-bottom: 1px solid var(--gray-border);
+        }
+
+        /* Navegación Superior Fija */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--primary-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            height: 70px;
+        }
+
+        .logo {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: var(--secondary-color);
+        }
+
+        /* Menu Hamburguesa Responsivo */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background-color: var(--white);
+            margin: 4px 0;
+            transition: 0.4s;
+        }
+
+        /* Portada */
+        #portada {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 80px 20px;
+            max-width: 100%;
+        }
+
+        #portada h1 {
+            color: var(--secondary-color);
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        #portada p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 20px auto;
+        }
+
+        .badge-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .badge {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        /* Tarjetas y Rejillas */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background-color: var(--light-bg);
+            border-left: 4px solid var(--secondary-color);
+            padding: 20px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        /* Tablas */
+        .table-responsive {
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            border: 1px solid var(--gray-border);
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        tr:nth-child(even) {
+            background-color: var(--light-bg);
+        }
+
+        /* Bloques destacados */
+        .highlight-box {
+            background-color: #fff9e6;
+            border-left: 5px solid var(--secondary-color);
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        /* Formulario de Contacto */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            height: 120px;
+        }
+
+        .btn-submit {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 12px 25px;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            background-color: #d4a513;
+        }
+
+        .form-message {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .form-message.success {
+            display: block;
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .form-message.error {
+            display: block;
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Estilos Responsivos */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                background-color: var(--primary-color);
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav ul li {
+                margin: 0;
+                text-align: center;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+
+            nav ul li a {
+                display: block;
+                padding: 15px;
+            }
+
+            #portada h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navegación Superior Fija -->
+    <header>
+        <div class="nav-container">
+            <a href="#portada" class="logo">Psicología Educativa</a>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <nav>
+                <ul id="nav-list">
+                    <li><a href="#portada">Portada</a></li>
+                    <li><a href="#presentacion">Presentación</a></li>
+                    <li><a href="#cronograma">Cronograma</a></li>
+                    <li><a href="#recursos">Recursos</a></li>
+                    <li><a href="#evaluacion">Evaluación</a></li>
+                    <li><a href="#politica-ia">Política IA</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Portada -->
+    <section id="portada">
+        <h1>PSICOLOGÍA EDUCATIVA</h1>
+        <p>Asignatura del área psicopedagógica orientada a comprender y diagnosticar los procesos de enseñanza-aprendizaje en diversos contextos educativos.</p>
+        <div class="badge-container">
+            <span class="badge">Código: PSI-450</span>
+            <span class="badge">Créditos: 6</span>
+            <span class="badge">Modalidad: Presencial</span>
+            <span class="badge">Régimen: Semestral</span>
+            <span class="badge">Horas Teóricas: 2</span>
+            <span class="badge">Horas Prácticas: 2</span>
+            <span class="badge">Total Horas: 4</span>
+            <span class="badge">Requisitos: Psicología del Desarrollo</span>
+        </div>
+    </section>
+
+    <!-- Presentación -->
+    <section id="presentacion">
+        <h2>Presentación de la Asignatura</h2>
+        
+        <div class="highlight-box">
+            <h3>Competencia General</h3>
+            <p>Comprende los procesos psicológicos implicados en el aprendizaje y la enseñanza, aplicando los principios, teorías y métodos de la psicología educativa para el diagnóstico, la intervención y la mejora de la calidad de los procesos de enseñanza-aprendizaje en distintos contextos y niveles educativos.</p>
+        </div>
+
+        <h3>Competencias Específicas</h3>
+        <div class="grid-container">
+            <div class="card">
+                <p>Estudia el objeto, campo de acción y evolución histórica de la psicología educativa.</p>
+            </div>
+            <div class="card">
+                <p>Comprende los procesos de desarrollo cognitivo, afectivo y social del estudiante y su incidencia en el aprendizaje.</p>
+            </div>
+            <div class="card">
+                <p>Analiza las principales teorías del aprendizaje y su aplicación en el diseño de situaciones de enseñanza.</p>
+            </div>
+            <div class="card">
+                <p>Conoce los factores motivacionales y las estrategias de evaluación de los aprendizajes.</p>
+            </div>
+            <div class="card">
+                <p>Aplica técnicas de intervención psicoeducativa para la atención a la diversidad y las necesidades educativas especiales.</p>
+            </div>
+        </div>
+
+        <h3 style="margin-top: 30px;">Indicadores de Logro de Desempeño</h3>
+        <ul>
+            <li>Comprende el objeto de estudio de la psicología educativa y reconoce el rol del psicólogo en el contexto escolar. Identifica los componentes del proceso de enseñanza-aprendizaje.</li>
+            <li>Explica las etapas del desarrollo cognitivo, afectivo y social del estudiante. Relaciona los aportes de Piaget y Vygotsky con la práctica educativa.</li>
+            <li>Diferencia las principales teorías del aprendizaje y sus aplicaciones prácticas. Diseña situaciones de aprendizaje significativo aplicando el enfoque constructivista.</li>
+            <li>Identifica estrategias para promover la motivación y evalúa los aprendizajes utilizando distintos instrumentos. Propone estrategias de atención a la diversidad e inclusión educativa en el aula.</li>
+        </ul>
+    </section>
+
+    <!-- Cronograma -->
+    <section id="cronograma">
+        <h2>Cronograma Analítico Semestral (Modalidad Presencial)</h2>
+        <p>Organización de los contenidos de aprendizaje distribuidos a lo largo del semestre presencial:</p>
+        
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Semanas</th>
+                        <th>Unidad de Aprendizaje</th>
+                        <th>Contenidos Temáticos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Semanas 1 - 4</strong></td>
+                        <td><strong>Unidad 1: Fundamentos de la Psicología Educativa</strong></td>
+                        <td>
+                            <ul>
+                                <li>Concepto, objeto y campo de estudio de la psicología educativa.</li>
+                                <li>Relación de la psicología educativa con otras ciencias de la educación.</li>
+                                <li>Breve reseña histórica y principales enfoques.</li>
+                                <li>El psicólogo educativo: funciones y ámbitos de actuación.</li>
+                                <li>La escuela como contexto de desarrollo.</li>
+                                <li>El proceso de enseñanza-aprendizaje: componentes y variables que intervienen.</li>
+                                <li>La relación profesor-alumno y su incidencia en el aprendizaje.</li>
+                                <li>Métodos de investigación en psicología educativa.</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Semanas 5 - 8</strong></td>
+                        <td><strong>Unidad 2: Desarrollo psicológico y aprendizaje escolar</strong></td>
+                        <td>
+                            <ul>
+                                <li>Desarrollo cognitivo según Piaget: estadios y sus implicaciones educativas.</li>
+                                <li>La perspectiva sociocultural de Vygotsky: la zona de desarrollo próximo y el andamiaje.</li>
+                                <li>Desarrollo del lenguaje y su relación con el aprendizaje.</li>
+                                <li>Desarrollo socioafectivo y desarrollo moral: aportes de Erikson y Kohlberg.</li>
+                                <li>Diferencias individuales en el desarrollo: ritmo, estilos y capacidades.</li>
+                                <li>Implicaciones del desarrollo evolutivo para la práctica docente.</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Semanas 9 - 12</strong></td>
+                        <td><strong>Unidad 3: Teorías del aprendizaje aplicadas a la educación</strong></td>
+                        <td>
+                            <ul>
+                                <li>El conductismo y el aprendizaje por condicionamiento: Pavlov y Skinner.</li>
+                                <li>El aprendizaje social de Bandura: modelado y autoeficacia.</li>
+                                <li>El cognitivismo y el procesamiento de la información.</li>
+                                <li>El aprendizaje significativo de Ausubel: conceptos previos y organizadores anticipados.</li>
+                                <li>El constructivismo de Piaget y Vygotsky aplicado al aula.</li>
+                                <li>Estrategias de enseñanza derivadas de cada enfoque.</li>
+                                <li>Diseño de situaciones de aprendizaje significativo.</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Semanas 13 - 16</strong></td>
+                        <td><strong>Unidad 4: Motivación, evaluación y atención a la diversidad</strong></td>
+                        <td>
+                            <ul>
+                                <li>La motivación escolar: tipos, teorías y estrategias para promoverla.</li>
+                                <li>Evaluación de los aprendizajes: funciones, tipos e instrumentos de evaluación.</li>
+                                <li>Dificultades de aprendizaje: detección e intervención.</li>
+                                <li>Necesidades educativas especiales y educación inclusiva. Adaptaciones curriculares.</li>
+                                <li>Convivencia escolar y manejo del aula.</li>
+                                <li>Uso de las tecnologías de la información y comunicación en el proceso de enseñanza-aprendizaje.</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Recursos -->
+    <section id="recursos">
+        <h2>Recursos y Bibliografía</h2>
+        
+        <h3>Bibliografía Básica</h3>
+        <ul>
+            <li><strong>WOOLFOLK, Anita (2010).</strong> <em>Psicología Educativa</em>. 11ª Ed. Editorial Pearson Educación. México.</li>
+            <li><strong>SANTROCK, John W (2006).</strong> <em>Psicología Educativa</em>. 2ª Ed. Editorial McGraw-Hill. México.</li>
+            <li><strong>COLL, César; PALACIOS, Jesús; MARCHESI, Álvaro (2001).</strong> <em>Desarrollo Psicológico y Educación</em>. Editorial Alianza. Madrid.</li>
+            <li><strong>AUSUBEL, David P (2002).</strong> <em>Adquisición y Retención del Conocimiento: una Perspectiva Cognitiva</em>. Editorial Paidós. Barcelona.</li>
+            <li><strong>PIAGET, Jean (1999).</strong> <em>Psicología y Pedagogía</em>. Editorial Ariel. Barcelona.</li>
+            <li><strong>VYGOTSKY, Lev S (1995).</strong> <em>Pensamiento y Lenguaje</em>. Editorial Paidós. Barcelona.</li>
+        </ul>
+
+        <h3 style="margin-top: 25px;">Bibliografía Complementaria</h3>
+        <ul>
+            <li><strong>DÍAZ BARRIGA, Frida; HERNÁNDEZ, Gerardo (2010).</strong> <em>Estrategias Docentes para un Aprendizaje Significativo</em>. 3ª Edición. Mc Graw Hill. México.</li>
+            <li><strong>BANDURA, Albert (1987).</strong> <em>Pensamiento y Acción: Fundamentos Sociales</em>. Editorial Martínez Roca. Barcelona.</li>
+            <li><strong>POZO, Juan Ignacio (2006).</strong> <em>Teorías Cognitivas del Aprendizaje</em>. 9ª Edición. Ediciones Morata. Madrid.</li>
+            <li><strong>GOOD, Thomas; BROPHY, Jere (1996).</strong> <em>Psicología Educativa Contemporánea</em>. 5ª Edición. Mc Graw Hill. México.</li>
+            <li><strong>ERIKSON, Erik H. (2000).</strong> <em>El Ciclo Vital Completado</em>. Editorial Paidós. Barcelona.</li>
+            <li><strong>COLL, César y otros (2007).</strong> <em>El Constructivismo en el Aula</em>. Editorial Graó. Barcelona.</li>
+        </ul>
+    </section>
+
+    <!-- Evaluación -->
+    <section id="evaluacion">
+        <h2>Estrategias y Criterios de Evaluación</h2>
+        <p>La evaluación del curso de Psicología Educativa se fundamenta en la comprobación del logro de las competencias planteadas mediante criterios continuos y auténticos:</p>
+        
+        <div class="grid-container">
+            <div class="card">
+                <h3>Evaluación Continua y Formativa</h3>
+                <p>Valoración de la participación activa en sesiones teóricas y prácticas, análisis de casos y tareas de investigación individual y grupal.</p>
+            </div>
+            <div class="card">
+                <h3>Diseño de Aprendizaje Significativo</h3>
+                <p>Evaluación de la capacidad del estudiante para diseñar situaciones didácticas reales aplicando los principios teóricos del constructivismo y las teorías cognitivas.</p>
+            </div>
+            <div class="card">
+                <h3>Propuestas de Intervención e Inclusión</h3>
+                <p>Comprobación de competencias prácticas para identificar estrategias motivacionales, detección de dificultades de aprendizaje y elaboración de adaptaciones curriculares.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Política de Uso de Inteligencia Artificial -->
+    <section id="politica-ia">
+        <h2>Política de Uso de Inteligencia Artificial</h2>
+        <div class="highlight-box">
+            <p>En el marco del compromiso ético y la integridad académica del curso, el uso de herramientas de Inteligencia Artificial Generativa se rige por las siguientes pautas:</p>
+            <ul>
+                <li><strong>Transparencia:</strong> El uso de IA en trabajos académicos debe ser expresamente declarado y justificado por el estudiante.</li>
+                <li><strong>Apoyo y no Sustitución:</strong> Las herramientas de IA podrán emplearse como apoyo para el formateo, búsqueda bibliográfica y estructuración inicial de ideas, pero en ningún caso reemplazarán la reflexión crítica personal, el análisis pedagógico propio ni la autoría de los contenidos evaluables.</li>
+                <li><strong>Verificación y Rigor:</strong> Será responsabilidad exclusiva del estudiante la verificación de toda información o cita obtenida a través de sistemas automatizados de IA.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contacto">
+        <h2>Contacto y Consultas</h2>
+        <p>Completa el siguiente formulario funcional para enviar tus mensajes, dudas o consultas sobre el curso de Psicología Educativa:</p>
+        
+        <form id="contactForm" onsubmit="handleFormSubmit(event)" style="max-width: 600px; margin-top: 20px;">
+            <div class="form-group">
+                <label for="nombre">Nombre *</label>
+                <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
+            </div>
+            <div class="form-group">
+                <label for="apellido">Apellido *</label>
+                <input type="text" id="apellido" name="apellido" required placeholder="Tu apellido">
+            </div>
+            <div class="form-group">
+                <label for="celular">Número de Celular *</label>
+                <input type="tel" id="celular" name="celular" required placeholder="Ej. +591 70000000">
+            </div>
+            <div class="form-group">
+                <label for="correo">Correo Electrónico *</label>
+                <input type="email" id="correo" name="correo" required placeholder="ejemplo@correo.com">
+            </div>
+            <div class="form-group">
+                <label for="mensaje">Mensaje *</label>
+                <textarea id="mensaje" name="mensaje" required placeholder="Escribe tu consulta o mensaje aquí..."></textarea>
+            </div>
+            <button type="submit" class="btn-submit">Enviar Mensaje</button>
+            <div id="formMessage" class="form-message"></div>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Asignatura: Psicología Educativa (PSI-450) - Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- JavaScript Interno Autocontenido -->
+    <script>
+        // Funcionalidad de Menú Hamburgesa Responsivo
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navList = document.getElementById('nav-list');
+
+        mobileMenu.addEventListener('click', () => {
+            navList.classList.toggle('active');
+        });
+
+        // Cerrar menú al hacer clic en un enlace (en dispositivos móviles)
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                navList.classList.remove('active');
+            });
+        });
+
+        // Resaltar menú de navegación activo según el desplazamiento (ScrollSpy)
+        const sections = document.querySelectorAll('section');
+        const navNavLinks = document.querySelectorAll('nav ul li a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 80;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navNavLinks.forEach(a => {
+                a.classList.remove('active');
+                if (a.getAttribute('href') === '#' + current) {
+                    a.classList.add('active');
+                }
+            });
+        });
+
+        // Formulario de Contacto Funcional
+        function handleFormSubmit(event) {
+            event.preventDefault();
+
+            const nombre = document.getElementById('nombre').value.trim();
+            const apellido = document.getElementById('apellido').value.trim();
+            const celular = document.getElementById('celular').value.trim();
+            const correo = document.getElementById('correo').value.trim();
+            const mensaje = document.getElementById('mensaje').value.trim();
+            const formMessage = document.getElementById('formMessage');
+
+            if (nombre && apellido && celular && correo && mensaje) {
+                // Simulación exitosa de procesamiento del formulario
+                formMessage.className = 'form-message success';
+                formMessage.textContent = `¡Gracias, ${nombre} ${apellido}! Tu mensaje ha sido enviado correctamente. Te contactaremos al correo ${correo} o celular ${celular}.`;
+                
+                // Limpiar el formulario
+                document.getElementById('contactForm').reset();
+            } else {
+                formMessage.className = 'form-message error';
+                formMessage.textContent = 'Por favor, completa todos los campos del formulario.';
+            }
+        }
+    </script>
+</body>
+</html>
