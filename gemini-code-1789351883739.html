@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psicología Educativa - UAB</title>
+    <style>
+        /* Requisitos visuales: Paleta institucional y tipografía accesible */
+        :root {
+            --primary-blue: #292D52;
+            --secondary-gold: #EAB818;
+            --text-color: #333;
+            --bg-color: #fff;
+            --light-bg: #f4f4f4;
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-family);
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+
+        /* Requisito funcional: Navegación superior fija */
+        header {
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-area img {
+            height: 50px; /* Ajuste basado en el logo proporcionado */
+            margin-right: 1rem;
+        }
+
+        .logo-area h1 {
+            font-size: 1.5rem;
+            color: var(--secondary-gold);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-gold);
+        }
+
+        /* Responsive menu */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .bar {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 4px 0;
+            transition: 0.4s;
+        }
+
+        main {
+            margin-top: 80px; /* Espacio para el header fijo */
+            padding-bottom: 2rem;
+        }
+
+        section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            scroll-margin-top: 80px; /* Para que el scroll no tape el título */
+        }
+
+        section:nth-child(even) {
+            background-color: var(--light-bg);
+        }
+
+        h2 {
+            color: var(--primary-blue);
+            border-bottom: 3px solid var(--secondary-gold);
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        h3 {
+            color: var(--primary-blue);
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        ul, ol {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        /* Seccion Portada */
+        #portada {
+            text-align: center;
+            background-color: var(--primary-blue);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 80px);
+        }
+
+        #portada h2 {
+            color: white;
+            border-bottom: none;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        #portada h3 {
+            color: var(--secondary-gold);
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .info-general {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        .info-general p strong {
+            color: var(--secondary-gold);
+        }
+
+        /* Seccion Cronograma */
+        table.cronograma-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            background: white;
+        }
+
+        table.cronograma-table th, table.cronograma-table td {
+            border: 1px solid #ddd;
+            padding: 1rem;
+            text-align: left;
+        }
+
+        table.cronograma-table th {
+            background-color: var(--primary-blue);
+            color: white;
+        }
+
+        table.cronograma-table tr:nth-child(even) {
+            background-color: var(--light-bg);
+        }
+
+        .unidad-header {
+            background-color: #e9eaf0;
+            font-weight: bold;
+            color: var(--primary-blue);
+        }
+
+        /* Seccion Evaluacion */
+        table.evaluacion-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        table.evaluacion-table th, table.evaluacion-table td {
+            border: 1px solid #ddd;
+            padding: 1rem;
+            text-align: left;
+        }
+
+        table.evaluacion-table th {
+            background-color: var(--primary-blue);
+            color: white;
+        }
+
+        /* Seccion Contacto - Requisito funcional: Formulario funcional */
+        .contact-container {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-info, .contact-form-area {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.25rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: var(--font-family);
+        }
+
+        textarea {
+            resize: vertical;
+            height: 150px;
+        }
+
+        button.submit-btn {
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        button.submit-btn:hover {
+            background-color: var(--secondary-gold);
+            color: var(--primary-blue);
+        }
+
+        /* Diseño responsivo */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                background-color: var(--primary-blue);
+                padding: 1rem;
+                text-align: center;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 1rem 0;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            #portada h2 {
+                font-size: 2rem;
+            }
+
+            table.cronograma-table, table.evaluacion-table {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo-area">
+                <!-- No dependencias externas: Logo embebido -->
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAMAAAC5zwKfAAAAMFBMVEVHcEwkqSklqSklqSklqSklqSklqSklqSklqSklqSklqSklqSklqSklqSklqSklqSkkqSkhU4pMAAAAEHRSTlMAESIzM0RVZneImbTM3e7/5644CgAAAAF0Uk5TAEDm2GYAAAFGSURBVFjH7drXcoMwEAVQE5Smu//+5xaDTe+9F9mMM8w7b5A1R4vF5fK8/Lp836U0I4Y5YpgfU1X9fI5q7fXzOqq95+d5qL19v94Oqe/79X7IfYixP8Y0Nf7fH47Xm+uNxfXmcn0x378531S5PjndXLk5udxSOT56vKV6e/L8qHp5fnyvunp+fN9V1c+P7w+p/w53V5/vj/fXm9v15fbmfn9zvanyfXO+tfL45HxL5fjk+ZYq/vFwS+X45PEtFf94uKWK4945HffO6bh3Tse9czrungfH3fPguHseHHfPg+PueXDcPQ+Ou+fBcffccO45N5x7zg3nnnPDuefccO45N5x7zg3nnpPCuWGlcG5YJZwZVolVwpphlaDGsGJwU14I7ow3gnvjnoR7556Ee+eehHvnlvWl/pXWwK2p8P3xK62Bd1fXv6S//wAsXwS1tGzJ6gAAAABJRU5ErkJggg==" alt="Logo UAB">
+                <h1>Psicología Educativa</h1>
+            </div>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#portada">Portada</a></li>
+                <li><a href="#presentacion">Presentación</a></li>
+                <li><a href="#cronograma">Cronograma</a></li>
+                <li><a href="#recursos">Recursos</a></li>
+                <li><a href="#evaluacion">Evaluación</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Sección Portada -->
+        <section id="portada">
+            <h2>Psicología Educativa</h2>
+            <h3>UAB - Gestión II - 2026</h3>
+            <div class="info-general">
+                <p><strong>Régimen:</strong> Semestral (II – 2026)</p>
+                <p><strong>Modalidad:</strong> Presencial</p>
+                <p><strong>Nota Mínima de Aprobación:</strong> 51 Puntos</p>
+                <p><strong>Docente:</strong> Lic. en Psicología (Tania Lanchimba)</p>
+                <p><strong>Fecha de Inicio:</strong> 20 de Julio de 2026</p>
+                <p><strong>Fecha Final:</strong> 04 de Diciembre de 2026</p>
+                <p><strong>Horas Académicas:</strong> 76 Horas (4 hrs. semanales)</p>
+            </div>
+        </section>
+
+        <!-- Sección Presentación -->
+        <section id="presentacion">
+            <h2>PRESENTACIÓN</h2>
+            <p>La asignatura Psicología Educativa en la carrera de Psicología de la Universidad Adventista de Bolivia aborda el estudio de los procesos de aprendizaje, el desarrollo cognitivo-socioemocional y las dinámicas del comportamiento humano en contextos educativos formales y no formales. En el escenario educativo actual, caracterizado por la diversidad en el aula y los desafíos de la era digital, el profesional en Psicología requiere competencias clínicas, psicoeducativas y metodológicas para optimizar el proceso de enseñanza-aprendizaje y promover el bienestar integral de la comunidad educativa.</p>
+            <p>Fundamentada en el Modelo Educativo de la Educación Adventista, esta materia integra los enfoques teóricos del aprendizaje con una visión holística (mente, cuerpo y espíritu). Se promueve el ejercicio profesional con ética cristiana, empatía, vocación de servicio y rescate de la dignidad humana, capacitando al estudiante para intervenir oportunamente en las necesidades educativas de niños, adolescentes y adultos.</p>
+            
+            <h3>OBJETIVO GENERAL</h3>
+            <p>Desarrollar competencias teóricas, evaluativas e interventivas en Psicología Educativa para diagnosticar, diseñar e implementar estrategias de optimización del proceso de enseñanza-aprendizaje y del clima escolar, promoviendo el desarrollo integral, la inclusión y la salud mental en la comunidad educativa con una perspectiva de principios ético-cristianos.</p>
+        </section>
+
+        <!-- Sección Cronograma -->
+        <section id="cronograma">
+            <h2>CRONOGRAMA (Régimen Semestral, Modalidad Presencial)</h2>
+            <p>La asignatura se desarrolla durante 20 semanas en el semestre II - 2026.</p>
+            
+            <table class="cronograma-table">
+                <thead>
+                    <tr>
+                        <th>Semanas</th>
+                        <th>Fechas (Aprox)</th>
+                        <th>Unidad / Tema</th>
+                        <th>Capacidades a Desarrollar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="unidad-header">
+                        <td colspan="4">I Unidad. Fundamentos Teóricos del Aprendizaje y Neurociencia Educativa</td>
+                    </tr>
+                    <tr>
+                        <td>1 - 4</td>
+                        <td>20/07 - 14/08</td>
+                        <td>
+                            <ul>
+                                <li>Introducción: Objeto y rol.</li>
+                                <li>Teorías del aprendizaje (Conductismo, Cognitivismo, Constructivismo).</li>
+                                <li>Bases neurobiológicas.</li>
+                                <li>Procesos cognitivos superiores.</li>
+                                <li>Cosmovisión cristiana del desarrollo.</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul>
+                                <li>Analiza corrientes de aprendizaje.</li>
+                                <li>Identifica rol de procesos neurobiológicos.</li>
+                                <li>Valora el potencial único del estudiante.</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr class="unidad-header">
+                        <td colspan="4">II Unidad. Evaluación y Diagnóstico Psicoeducativo</td>
+                    </tr>
+                    <tr>
+                        <td>5 - 8</td>
+                        <td>17/08 - 11/09</td>
+                        <td>
+                            <ul>
+                                <li>Proceso de evaluación: Entrevista, observación, anamnesis.</li>
+                                <li>Baterías y pruebas estandarizadas.</li>
+                                <li>Detección de Trastornos del Aprendizaje.</li>
+                                <li>Evaluación de Trastornos del Neurodesarrollo (TDAH, TEA).</li>
+                                <li>Informe Psicoeducativo.</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul>
+                                <li>Selecciona e implementa herramientas de diagnóstico.</li>
+                                <li>Identifica indicadores clínicos.</li>
+                                <li>Redacta informes éticos.</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr class="unidad-header">
+                        <td colspan="4">III Unidad. Intervención Psicopedagógica y Educación Inclusiva</td>
+                    </tr>
+                    <tr>
+                        <td>9 - 13</td>
+                        <td>14/09 - 16/10</td>
+                        <td>
+                            <ul>
+                                <li>Estrategias de intervención en aula.</li>
+                                <li>Educación Inclusiva y DUA.</li>
+                                <li>Adaptaciones Curriculares (NEE).</li>
+                                <li>Orientación vocacional y tutoría.</li>
+                                <li>Trabajo colaborativo (familias/docentes).</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul>
+                                <li>Diseña planes de intervención.</li>
+                                <li>Formula adaptaciones curriculares y DUA.</li>
+                                <li>Promueve empatía y respeto.</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr class="unidad-header">
+                        <td colspan="4">IV Unidad. Clima Escolar, Salud Mental y Valores Ético-Cristianos</td>
+                    </tr>
+                    <tr>
+                        <td>14 - 20</td>
+                        <td>19/10 - 04/12</td>
+                        <td>
+                            <ul>
+                                <li>Convivencia y clima emocional.</li>
+                                <li>Prevención Bullying/Ciberbullying.</li>
+                                <li>Salud mental docente.</li>
+                                <li>Educación en valores y resolución de conflictos.</li>
+                                <li>Principios bíblico-cristianos en labor psicoeducativa.</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul>
+                                <li>Diseña programas de prevención de violencia.</li>
+                                <li>Desarrolla talleres socioemocionales.</li>
+                                <li>Fundamenta acciones en ética y servicio.</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Sección Recursos -->
+        <section id="recursos">
+            <h2>RECURSOS</h2>
+            <h3>Referencias Bibliográficas Básicas</h3>
+            <ul>
+                <li>Woolfolk, A. (2018). <em>Psicología educativa</em> (13.ª ed.). Pearson Educación.</li>
+                <li>Santrock, J. W. (2020). <em>Psicología de la educación</em> (6.ª ed.). McGraw-Hill.</li>
+                <li>White, E. G. (2012). <em>La educación</em>. Publicaciones Interamericanas.</li>
+            </ul>
+            <h3>Referencias Bibliográficas Complementarias</h3>
+            <ul>
+                <li>Feldman, R. S. (2019). <em>Desarrollo psicológico a través de la vida</em> (8.ª ed.). Pearson Educación.</li>
+                <li>Arancibia, V., Herrera, P., & Strasser, K. (2014). <em>Manual de psicología educacional</em> (6.ª ed.). Ediciones UC.</li>
+            </ul>
+        </section>
+
+        <!-- Sección Evaluación -->
+        <section id="evaluacion">
+            <h2>EVALUACIÓN</h2>
+            <p>La evaluación se basa en indicadores que miden la comprensión de teorías, la capacidad de diagnóstico precise, el diseño de intervenciones inclusivas (DUA) y la estructuración de talleres de convivencia con valores ético-cristianos.</p>
+            
+            <table class="evaluacion-table">
+                <thead>
+                    <tr>
+                        <th>N°</th>
+                        <th>Fecha</th>
+                        <th>Estrategia - Descripción</th>
+                        <th>Ponderado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1.</td>
+                        <td>Todas</td>
+                        <td>Asistencia y participación activa</td>
+                        <td>10.00 %</td>
+                    </tr>
+                    <tr>
+                        <td>2.</td>
+                        <td>27/08/2026</td>
+                        <td>Producto 1: Diagnóstico Neuro psicoeducativo e Informe de Caso</td>
+                        <td>15.00 %</td>
+                    </tr>
+                    <tr>
+                        <td>3.</td>
+                        <td>01/09/2026</td>
+                        <td>Producto 2: Diseño de Adaptación Curricular y Plan DUA para Aula Inclusiva</td>
+                        <td>25.00 %</td>
+                    </tr>
+                    <tr>
+                        <td>4.</td>
+                        <td>08/09/2026</td>
+                        <td>Producto 3: Proyecto Final Integrador (Programa de Intervención Psicoeducativa y Convivencia Escolar)</td>
+                        <td>50.00 %</td>
+                    </tr>
+                    <tr style="font-weight: bold; background-color: #ddd;">
+                        <td colspan="3" style="text-align: right;">Total:</td>
+                        <td>100.00 %</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Sección Contacto -->
+        <section id="contacto">
+            <h2>CONTACTO</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Universidad Adventista de Bolivia (UAB)</h3>
+                    <p>Facultad de Psicología</p>
+                    <p>Docente: Lic. Tania Lanchimba</p>
+                    <p>Cochabamba - Bolivia</p>
+                </div>
+                <div class="contact-form-area">
+                    <h3>Formulario de Contacto para Estudiantes</h3>
+                    <!-- No dependencias externas: Formulario autocontenido con JS básico -->
+                    <form class="contact-form" id="studentForm">
+                        <div class="form-group">
+                            <label for="nombre">Nombre:</label>
+                            <input type="text" id="nombre" name="nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="apellido">Apellido:</label>
+                            <input type="text" id="apellido" name="apellido" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="celular">Número de Celular:</label>
+                            <input type="tel" id="celular" name="celular" required pattern="[0-9]{8,12}">
+                        </div>
+                        <div class="form-group">
+                            <label for="correo">Correo Electrónico:</label>
+                            <input type="email" id="correo" name="correo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="mensaje">Mensaje:</label>
+                            <textarea id="mensaje" name="mensaje" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Enviar Mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer style="background-color: var(--primary-blue); color: white; text-align: center; padding: 1rem 0; font-size: 0.9rem;">
+        <p>&copy; 2026 Universidad Adventista de Bolivia. "Innovación que impulsa, valores que permanecen".</p>
+    </footer>
+
+    <!-- Requisito técnico: JS autocontenido -->
+    <script>
+        // Responsive Menu Toggle
+        document.getElementById('mobile-menu').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+            document.getElementById('mobile-menu').classList.toggle('active');
+        });
+
+        // Cerrar menu al hacer click en un enlace (movil)
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('.nav-links').classList.remove('active');
+                document.getElementById('mobile-menu').classList.remove('active');
+            });
+        });
+
+        // JS Funcional para el formulario (Requisito funcional)
+        document.getElementById('studentForm').addEventListener('submit', function(event) {
+            // Prevenir el envío real para esta demostración autocontenida
+            event.preventDefault();
+
+            // Capturar datos
+            const nombre = document.getElementById('nombre').value;
+            const apellido = document.getElementById('apellido').value;
+            const celular = document.getElementById('celular').value;
+            const correo = document.getElementById('correo').value;
+            const mensaje = document.getElementById('mensaje').value;
+
+            // Validación básica extra (JS Pattern ya valida celular)
+            if(nombre && apellido && celular && correo && mensaje) {
+                // Demostración de funcionalidad autocontenida
+                alert(`¡Gracias ${nombre}! Tu mensaje ha sido "registrado" localmente en esta página de demostración.\n\nEn un entorno real, estos datos se enviarían a un servidor.`);
+                // Resetear formulario
+                document.getElementById('studentForm').reset();
+            } else {
+                alert('Por favor, rellena todos los campos obligatorios.');
+            }
+        });
+    </script>
+</body>
+</html>
